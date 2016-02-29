@@ -8,15 +8,11 @@
         <meta name="theme-color" content="#999999">
 
         <base href="/">
-
-        <!-- compiled CSS --><% styles.forEach(function(file) { %>
-        <link rel="stylesheet" type="text/css" href="<%= file %>"><% }); %>
     </head>
     <body>
         <div ui-view="main"></div>
 
         <noscript>Enable JavaScript to view this web page.</noscript>
-        <!-- compiled JavaScript --><% scripts.forEach(function (file) { %>
-        <script type="text/javascript" src="<%= file %>"></script><% }); %>
+        <script type="text/javascript" src="app.js" ></script>
     </body>
 </html>

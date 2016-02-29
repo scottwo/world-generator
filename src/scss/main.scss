@@ -1,12 +1,14 @@
-/* MAIN PROJECT STYLES 
+/* MAIN PROJECT STYLES
 ---------------------------------------- */
 
 /* Import stylesheets
 ---------------------------------------- */
 /* Exception: responsive styles are imported at the end to override rules set here */
 
-@import '../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
-$icon-font-path: 'assets/fonts';
+
+// @import '../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
+// @import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+
 @import 'colors';
 @import 'typography';
 @import 'increments';

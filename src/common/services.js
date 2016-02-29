@@ -3,7 +3,7 @@ import 'common/services/session';
 import 'common/services/notify';
 
 angular.module('services', [
-    'services.auth',
-    'services.session',
-    'services.notify',
+  'services.auth',
+  'services.session',
+  'services.notify',
 ]);
