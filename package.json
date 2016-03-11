@@ -21,7 +21,8 @@
     "bootstrap-sass": "^3.3.6",
     "js-data": "^2.8.2",
     "js-data-angular": "^3.1.0",
-    "lodash": "^3.10.1"
+    "lodash": "^3.10.1",
+    "sass-loader": "^3.1.2"
   },
   "devDependencies": {
     "babel-core": "^6.4.0",
