@@ -23,12 +23,32 @@ mv izeni-angular-template $PROJECT_NAME
 cd $PROJECT_NAME
 find . -type f -print0 | xargs -0 sed -i "s/PROJECT_NAME/$PROJECT_NAME/g"
 npm install && bower install
-gulp build
+```
+For webpack, run these commands:
+```bash
+npm install webpack -g
+npm install webpack-dev-server -g
+webpack-dev-server --inline --hot
 ```
 And don't forget to change the git origin to match your project's:
 ```bash
 git remote set-url origin [your project's clone url]
 ```
+
+## Commands
+
+### `webpack-dev-server`
+This is what you'll be using for most of development.
+For more options visit: <https://webpack.github.io/docs/webpack-dev-server.html#webpack-dev-server-cli>
+
+### `webpack`
+This is what you'll use for production. 
+for more options visit: <https://webpack.github.io/docs/cli.html#pure-cli>
+
+## Change Environment
+You can change evn
+`NODE_ENV=dev webpack-dev-server --inline --hot`
+
 
 ## Documentation for Custom JS-Data Methods
 
@@ -138,58 +158,6 @@ Lastly, after the user initiates the oauth process, they are redirect back to th
 which is caught by the `oauth` state. The oauth state then sends a request to the server:
 `/social/facebook?code=[code]&state=[state]` which then returns a token. If a user didn't exist for the email that the oauth provider passed along, a new user will be created in that same call.
 
-## Commands
-
-### `gulp build`
-This is what you'll be using for most of development.
-This command will gather up all of the app files and dependencies and toss them into the `build/` directory. It will also start the development server with livereload enabled as well as a file watcher.
-
-#### Options
-
-##### `--port`
-Setting this will change the port the development server uses. Much easier than changing it manually in `gulpfile.js`.
-`gulp build --port 9000`
-
-### `gulp compile`
-This command will first run the build command and then it will take all of the app files and dependencies and concatenate them into one file that will then be minified and annotated with `ngAnnotate` so you don't have to implement minified safe code yourself.
-
-This command will change an option that the code is compiled with when running babel. It changes the modules option from whatever it is set to in config.js to `inline` which allows the app to actually work with a concatenated file.
-
-In `index.html` the script block that bootstraps the app will be removed and replaced with a normal `ng-app` attribute since it's not needed anymore.
-
-### `gulp test`
-Runs all of the tests in a single run.
-
-### `gulp tdd`
-Runs all of the tests but runs the tests again if any changes occur.
-
-## Tasks
-
-### config
-This task will take one of the .json files in `src/config/` and create a config angular module that can be imported into your app. The config file that it selects by default is the `dev.json` file. To change which one is used set the `NODE_ENV` environment variable to the name of the file you want to use, excluding the file type. It then runs that JSON object through `src/config/computed.js`, allowing you to define environment agnostic or interdependent configuration.
-
-`NODE_ENV=production gulp compile`
-
-#### Example
-**dev.json**
-
-```json
-{
-  "config": {
-      "apiUrl": "http://myapi.com/"
-  }
-}
-```
-
-**config.js**
-
-```javascript
-angular
-  .module("config", [])
-  .constant("config", {
-      "apiUrl": "http://myapi.com/"
-  });
-```
 
 ### buildHtml
 This task will take all of the `*.tpl.html` files and put them into one angular module that will use angulars templateCache to store them. All you need to do is make sure the `htmlTemplates` module is included in your app somewhere preferably in `app.js`.
