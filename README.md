@@ -23,13 +23,12 @@ mv izeni-angular-template $PROJECT_NAME
 cd $PROJECT_NAME
 find . -type f -print0 | xargs -0 sed -i "s/PROJECT_NAME/$PROJECT_NAME/g"
 npm install && bower install
-```
-For webpack, run these commands:
-```bash
 npm install webpack -g
 npm install webpack-dev-server -g
 webpack-dev-server --inline --hot
 ```
+Your project should be running on <http://localhost:8080/>
+
 And don't forget to change the git origin to match your project's:
 ```bash
 git remote set-url origin [your project's clone url]
