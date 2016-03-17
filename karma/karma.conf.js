@@ -32,10 +32,10 @@
                 'node_modules/es6-module-loader/dist/es6-module-loader-sans-promises.src.js',
                 'node_modules/systemjs/dist/system.src.js',
                 'node_modules/systemjs/lib/extension-register.js',
-                'bower_components/lodash/lodash.js',
-                'bower_components/angular/angular.js',
-                'bower_components/angular-ui-router/release/angular-ui-router.js',
-                'bower_components/angular-mocks/angular-mocks.js',
+                'node_modules/lodash/lodash.js',
+                'node_modules/angular/angular.js',
+                'node_modules/angular-ui-router/release/angular-ui-router.js',
+                'node_modules/angular-mocks/angular-mocks.js',
                 'karma/test-main.js'
             ],
 

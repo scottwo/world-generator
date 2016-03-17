@@ -29,10 +29,8 @@
                 'vendor/angular-cookies.js',
                 'vendor/angular-animate.js',
                 'vendor/angular-toastr.tpls.js',
-                'vendor/ui-bootstrap-tpls.js',
                 'vendor/js-data.js',
                 'vendor/js-data-angular.js',
-                'vendor/bootstrap.js',
                 'templates.js',
                 'config.js'
             ],
@@ -43,7 +41,6 @@
         },
 
         devScripts: [
-            'vendor/tota11y.js'
         ],
 
         rootFiles: [
@@ -102,30 +99,26 @@
                     'es6-module-loader-sans-promises.src.js',
                 'node_modules/systemjs/dist/system.src.js',
                 'node_modules/systemjs/lib/extension-register.js',
-                'bower_components/tota11y/build/tota11y.js',
-                'bower_components/lodash/lodash.js',
-                'bower_components/angular/angular.js',
-                'bower_components/angular-ui-router/release/' +
+                'node_modules/lodash/lodash.js',
+                'node_modules/angular/angular.js',
+                'node_modules/angular-ui-router/release/' +
                     'angular-ui-router.js',
-                'bower_components/angular-cookies/angular-cookies.js',
-                'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-                'bower_components/angular-animate/angular-animate.js',
-                'bower_components/angular-toastr/dist/angular-toastr.tpls.js',
-                'bower_components/js-data/dist/js-data.js',
-                'bower_components/js-data-angular/dist/js-data-angular.js',
+                'node_modules/angular-cookies/angular-cookies.js',
+                'node_modules/angular-animate/angular-animate.js',
+                'node_modules/angular-toastr/dist/angular-toastr.tpls.js',
+                'node_modules/js-data/dist/js-data.js',
+                'node_modules/js-data-angular/dist/js-data-angular.js',
                 'src/bootstrap.js'
             ],
 
             css: [
-                'bower_components/angular-toastr/dist/angular-toastr.css',
+                'node_modules/angular-toastr/dist/angular-toastr.css',
             ],
 
             assets: [
-                'bower_components/bootstrap/fonts/**',
             ],
 
             fonts: [
-                'bower_components/bootstrap/fonts/**',
             ]
         }
     };
