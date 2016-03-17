@@ -5,10 +5,8 @@
 ---------------------------------------- */
 /* Exception: responsive styles are imported at the end to override rules set here */
 
-
-// @import '../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
-// @import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';
-
+// @import '../../node_modules/foundation-apps/scss/foundation.scss';
+$icon-font-path: 'assets/fonts';
 @import 'colors';
 @import 'typography';
 @import 'increments';
