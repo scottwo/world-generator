@@ -22,9 +22,9 @@ git clone git@dev.izeni.net:izeni/izeni-angular-template.git
 mv izeni-angular-template $PROJECT_NAME
 cd $PROJECT_NAME
 find . -type f -print0 | xargs -0 sed -i "s/PROJECT_NAME/$PROJECT_NAME/g"
-npm install && bower install
-npm install webpack -g
-npm install webpack-dev-server -g
+npm install
+npm install webpack -g (likely requires sudo)
+npm install webpack-dev-server -g (likely requires sudo)
 webpack-dev-server --inline --hot
 ```
 Your project should be running on <http://localhost:8080/>
