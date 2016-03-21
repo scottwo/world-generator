@@ -1,3 +1,5 @@
+let HomeTpl = require('./home.tpl.html');
+
 class HomeController {
   constructor (user, Notify) {
     this.user = user;
@@ -12,7 +14,7 @@ function config ($stateProvider) {
       'main@': {
         controller: 'HomeController',
         controllerAs: 'HomeCtrl',
-        templateUrl: 'app/home/home.tpl.html'
+        templateUrl: HomeTpl
       }
     },
     resolve: {

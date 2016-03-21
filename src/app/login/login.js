@@ -1,7 +1,7 @@
 import 'common/services/auth';
 import 'common/models/User';
 import {config} from 'config';
-var loginHtml = require('./login.tpl.html');
+let LoginTpl = require('./login.tpl.html');
 
 class LoginController {
   constructor (auth, $state, $stateParams, User) {
@@ -62,7 +62,7 @@ function moduleConfig ($stateProvider) {
       'main@': {
         controller: 'LoginController',
         controllerAs: 'LoginCtrl',
-        templateUrl: loginHtml
+        templateUrl: LoginTpl
       }
     },
     resolve: {
