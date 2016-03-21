@@ -1,10 +1,8 @@
-import 'angular-animate';
 import 'js-data';
 import 'js-data-angular';
 import 'lodash';
 import 'angular-ui-router';
-import 'bootstrap';
-import 'angular-ui-bootstrap';
+import 'angular-animate';
 import 'angular-cookies';
 import 'angular-toastr';
 
@@ -76,7 +74,6 @@ function run ($rootScope, $window, $timeout, $state) {
 angular
 .module('PROJECT_NAME', [
   'ui.router',
-  'ui.bootstrap',
   'models',
   'modals',
   'services',

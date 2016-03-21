@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var WebpackNotifierPlugin = require('webpack-notifier');
+var autoprefixer = require('autoprefixer');
 
 // var process = require('process');
 
@@ -58,13 +59,30 @@ module.exports = {
 			},
       {
         test: /\.scss$/,
-        loaders: ["style", "css", "sass"]
+        exclude: /node_modules/,
+        loaders: ['style', 'css', 'postcss', 'sass']
       },
       {
         test: /\.css$/,
-        loaders: ["style", "css"]
+        exclude: /node_modules/,
+        loaders: ['style', 'css', 'postcss']
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: [
+            'file?name=/assets/img/[name].[ext]',
+            'image-webpack?optimizationLevel=2&interlaced=false&progressive=true'
+        ]
       }
 		]
+	},
+
+  // PostCSS config (currently only for autoprefixer)
+  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
+
+	// ESLint config
+	eslint: {
+		configFile: path.join(__dirname, '.eslintrc')
 	},
 
 	// Dev server settings
@@ -73,11 +91,6 @@ module.exports = {
 		noInfo: false,
 		hot: true,
 		historyApiFallback: true,
-	},
-
-
-	// ESLint config
-	eslint: {
-		configFile: path.join(__dirname, '.eslintrc')
 	}
+
 };
