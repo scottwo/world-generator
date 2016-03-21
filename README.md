@@ -23,8 +23,8 @@ mv izeni-angular-template $PROJECT_NAME
 cd $PROJECT_NAME
 find . -type f -print0 | xargs -0 sed -i "s/PROJECT_NAME/$PROJECT_NAME/g"
 npm install
-npm install webpack -g (likely requires sudo)
-npm install webpack-dev-server -g (likely requires sudo)
+npm install webpack -g (one time, likely requires sudo)
+npm install webpack-dev-server -g (one time, likely requires sudo)
 webpack-dev-server --inline --hot
 ```
 Your project should be running on <http://localhost:8080/>
@@ -41,11 +41,11 @@ This is what you'll be using for most of development.
 For more options visit: <https://webpack.github.io/docs/webpack-dev-server.html#webpack-dev-server-cli>
 
 ### `webpack`
-This is what you'll use for production. 
+This is what you'll use for production.
 for more options visit: <https://webpack.github.io/docs/cli.html#pure-cli>
 
 ## Change Environment
-You can change evn
+You can change env
 `NODE_ENV=dev webpack-dev-server --inline --hot`
 
 
