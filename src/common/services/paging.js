@@ -70,7 +70,7 @@ export class Paging {
   getResult (data) {
     let results = 'data' in data ? data.data.results : data.results || data;
     if (this.options.deserialize) {
-      return this.options.deserialize(this.resource, results);
+      return this.options.deserialize(this.resource, this.resource.inject(results));
     }
     if (this.options.cacheResponse) {
       return this.resource.inject(results);
