@@ -8,7 +8,7 @@ function apiConfig (DSProvider, DSHttpAdapterProvider, $httpProvider) {
   DSHttpAdapterProvider.defaults.log = false;
 
   DSProvider.defaults.deserialize = (resourceName, res) => {
-    let data = res.data;
+    let data = res.data ? res.data : res;
     if (data && 'count' in data && 'next' in data && 'results' in data) {
       data = data.results;
       data._meta = {

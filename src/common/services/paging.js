@@ -80,7 +80,7 @@ export class Paging {
 
   _updateAll () {
     this.all = [];
-    _.sortBy(_.pairs(this.pages), '0').forEach(pair => {
+    _.sortBy(_.toPairs(this.pages), '0').forEach(pair => {
       Array.prototype.push.apply(this.all, pair[1]);
     });
   }
