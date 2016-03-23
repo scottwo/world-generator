@@ -1,0 +1,33 @@
+
+/// Convert to Em
+/// Converts a pixel value to matching em value. *Any* value passed, regardless of unit, is assumed to be a pixel value. By default, the base pixel value used to calculate the em value is taken from the `$em-base` variable.
+///
+/// @param {number} $value - Pixel value to convert.
+///
+/// @return A number in ems, calculated based on the given value and the base pixel value.
+@function convert-to-em($value, $base-value: $rem-base)  {
+  $value: strip-unit($value) / strip-unit($base-value) * 1em;
+  @if ($value == 0em) { $value: 0; } // Turn 0em into 0
+  @return $value;
+}
+
+/// Em Calculator
+/// Converts one or more pixel values into matching em values. This function works a lot like `convert-to-em`, except it can convert more than one value at once, which is useful when setting multiple values on a `margin` or `padding` property.
+///
+/// @param {number|list} $values - One or more values to convert. Be sure to separate them with spaces and not commas. If you need to convert a comma-separated list, wrap the list in parentheses.
+///
+/// @return A list of converted values.
+@function em-calc($values, $base-value: null) {
+  @if $base-value == null {
+    $base-value: $rem-base;
+  }
+  $max: length($values);
+
+  @if $max == 1 { @return convert-to-em(nth($values, 1), $base-value); }
+
+  $emValues: ();
+  @for $i from 1 through $max {
+    $emValues: append($emValues, convert-to-em(nth($values, $i), $base-value));
+  }
+  @return $emValues;
+}

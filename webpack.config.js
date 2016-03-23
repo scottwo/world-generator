@@ -31,7 +31,11 @@ module.exports = {
 	resolve: {
 		root: path.join(__dirname, '/src'),
 		// What files we want to be able to import
-		extensions: ['', '.webpack.js', '.web.js', '.js', '.css', '.less', '.scss']
+		extensions: ['', '.webpack.js', '.web.js', '.js', '.css', '.less', '.scss'],
+		alias: {
+	      'foundation-apps': path.join(__dirname, '/node_modules/foundation-apps/dist/js/foundation-apps.js'),
+	      'foundation-tpls': path.join(__dirname, '/node_modules/foundation-apps/dist/js/foundation-apps-templates.js'),
+	    }
 	},
 
 	module: {

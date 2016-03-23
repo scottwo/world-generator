@@ -5,13 +5,15 @@
 ---------------------------------------- */
 /* Exception: responsive styles are imported at the end to override rules set here */
 
-// @import '../../node_modules/foundation-apps/scss/foundation.scss';
-$icon-font-path: 'assets/fonts';
+
+@import 'settings';
+@import '../../node_modules/foundation-apps/scss/foundation.scss';
+@import 'functions';
+@import 'mixins';
 @import 'colors';
 @import 'typography';
 @import 'increments';
 @import 'defaults';
-@import 'mixins';
 @import 'toasts';
 @import '../app/login/login';
 

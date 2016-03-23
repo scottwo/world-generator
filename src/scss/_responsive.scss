@@ -1,57 +1,51 @@
 /* RESPONSIVENESS
 ---------------------------------------- */
+// Utilizes Zurb Foundation breakpoint mixin
 
-/* Large Desktop (Above 1300px)
+/* Extra Large Desktop (Above 1440px)
 ----------------------------------------*/
-@media (min-width: 1300px) {
+@include breakpoint(1440) {
 
 }
 
 
-/* below 1300px
+/* below 1440px
 ----------------------------------------*/
-@media (max-width: 1299px) {
+@include breakpoint(1440 down) {
 
 }
 
 
 /* Anything smaller than large desktop
 ----------------------------------------*/
-@media (max-width: 1199px) {
+@include breakpoint(1200 down) {
 
 }
 
 
 /* Tablet and Phone (anything smaller than 1024px)
 ----------------------------------------*/
-@media (max-width: 1024px) {
-
-}
-
-
-/* Tablet and Phone (anything smaller than 1000px)
-----------------------------------------*/
-@media (max-width: 999px) {
-
-}
-
-
-/* Portrait tablet to landscape and desktop
-----------------------------------------*/
-@media (min-width: 768px) and (max-width: 991px) {
+@include breakpoint(1024 down) {
 
 }
 
 
 /* Landscape phone to portrait tablet
 ----------------------------------------*/
-@media (max-width: 767px) {
+@include breakpoint(767 down) {
+
+}
+
+
+/* Large portrait phone
+----------------------------------------*/
+@include breakpoint(640 down) {
 
 }
 
 
 /* Landscape phones and down
 ----------------------------------------*/
-@media (max-width: 400px) {
+@include breakpoint(400 down) {
 
 }
