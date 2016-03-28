@@ -1,25 +1,40 @@
+import 'common/modals';
+
 class ConfirmModalController {
-  constructor ($modalInstance, modalData) {
-    this.$modal = $modalInstance;
-    this.data = modalData || {};
+  constructor(Modal) {
+    this.$modal = Modal.confirm.instance;
+    this.data = Modal.confirm.data || {};
     _.defaults(this.data, {
       title: 'Confirm',
       body: 'Are you sure?',
       okText: 'Ok',
       cancelText: 'Cancel',
-      ok: 'ok',
-      cancel: 'cancel',
     });
+    this.promise = Modal.confirm.result;
+    
   }
 
-  ok () {
-    this.$modal.close(this.data.ok);
+  cancel() {
+    this.promise.reject('cancel');
+    this.$modal.destroy();
   }
 
-  cancel () {
-    this.$modal.dismiss(this.data.cancel);
+  ok() {
+    this.promise.resolve(this.data);
+    this.$modal.destroy();
   }
 }
 
-angular.module('modals.confirm', [])
-.controller('ConfirmModalController', ConfirmModalController);
+function ConfirmModalDirective() {
+  return {
+    restrict: 'E',
+    scope: {},
+    controller: 'ConfirmModalController',
+    controllerAs: 'ConfirmModalCtrl',
+    templateUrl: 'common/modals/confirm/confirm.tpl.html'
+  };
+}
+
+angular.module('modals.confirm', ['modals'])
+  .controller('ConfirmModalController', ConfirmModalController)
+  .directive('confirmModal', ConfirmModalDirective);

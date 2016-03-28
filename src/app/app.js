@@ -5,6 +5,8 @@ import 'angular-ui-router';
 import 'angular-animate';
 import 'angular-cookies';
 import 'angular-toastr';
+import 'foundation-apps';
+import 'foundation-tpls';
 
 import 'app/home/home';
 import 'app/login/login';
@@ -12,6 +14,7 @@ import 'common/models';
 import 'common/modals';
 import 'common/services';
 import 'common/directives';
+
 
 function config ($urlRouterProvider, $locationProvider, $stateProvider) {
   $urlRouterProvider.otherwise('/');
@@ -80,6 +83,7 @@ angular
   'directives',
   'PROJECT_NAME.home',
   'PROJECT_NAME.login',
+  'foundation'
 ])
 .config(config)
 .run(run)
