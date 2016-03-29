@@ -2,7 +2,6 @@ var path = require('path');
 var webpack = require('webpack');
 var WebpackNotifierPlugin = require('webpack-notifier');
 var autoprefixer = require('autoprefixer');
-
 // var process = require('process');
 
 var config = `./config/${process.env.NODE_ENV || 'dev'}.js`;
@@ -32,6 +31,7 @@ module.exports = {
 		root: path.join(__dirname, '/src'),
 		// What files we want to be able to import
 		extensions: ['', '.webpack.js', '.web.js', '.js', '.css', '.less', '.scss'],
+    // Foundation currently has a known issue where the npm package cannot use a simple import
 		alias: {
 	      'foundation-apps': path.join(__dirname, '/node_modules/foundation-apps/dist/js/foundation-apps.js'),
 	      'foundation-tpls': path.join(__dirname, '/node_modules/foundation-apps/dist/js/foundation-apps-templates.js'),
