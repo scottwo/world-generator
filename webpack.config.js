@@ -1,12 +1,13 @@
-var path = require('path');
-var webpack = require('webpack');
-var WebpackNotifierPlugin = require('webpack-notifier');
-var autoprefixer = require('autoprefixer');
-// var process = require('process');
+var webpack               = require('webpack'),
+    path                  = require('path'),
+    WebpackNotifierPlugin = require('webpack-notifier'),
+    autoprefixer          = require('autoprefixer'),
 
-var config = `./config/${process.env.NODE_ENV || 'dev'}.js`;
-var env = require(config);
+    config                = `./config/${process.env.NODE_ENV || 'dev'}.js`,
+    env                   = require(config);
+
 console.log(env);
+
 module.exports = {
 	// Specify logical root of the sourcecode
 	plugins: [
@@ -19,7 +20,6 @@ module.exports = {
 	entry: {
     app: ['bootstrap.js'],
   },
-	devtool: 'source-map',
 	// Specify where to put the results
 	output: {
 		path: path.join(__dirname, '/dist'),
@@ -95,6 +95,7 @@ module.exports = {
 		noInfo: false,
 		hot: true,
 		historyApiFallback: true,
-	}
+	},
+  devtool: 'source-map',
 
 };
