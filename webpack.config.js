@@ -77,6 +77,10 @@ module.exports = {
             'file?name=/assets/img/[name].[ext]',
             'image-webpack?optimizationLevel=2&interlaced=false&progressive=true'
         ]
+      },
+      {
+        test: /index\.html$/i,
+        loader: 'file?name=index.html'
       }
 		]
 	},
