@@ -14,6 +14,7 @@ import 'common/models';
 import 'common/modals';
 import 'common/services';
 import 'common/directives';
+import 'common/components';
 
 
 /*@ngInject*/
