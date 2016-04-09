@@ -34,8 +34,10 @@ if [ -d $PWD/$PROJECT_NAME ]; then
 fi
 
 git clone https://dev.izeni.net/izeni/izeni-angular-template.git $PROJECT_NAME
+cd $PROJECT_NAME
 
-find $PWD/$PROJECT_NAME -type f -print0 | xargs -0 sed -i "s/PROJECT_NAME/$PROJECT_NAME/g"
+find $PROJECT_NAME -type f -print0 | xargs -0 sed -i "s/PROJECT_NAME/$PROJECT_NAME/g"
+npm install
 
 # Check for missing dependencies
 MISSING=()
@@ -55,6 +57,6 @@ fi
 
 # Announce success
 success "\nSUCCESS"
-echo -e "Your project has been unpacked into $PWD/$PROJECT_NAME.\n"
+echo -e "Your project has been unpacked into ${PWD}.\n"
 echo -e "Run the project by changing into its directory and running the command 'webpack-dev-server --inline --hot'."
 echo -e "Your server should be running on http://localhost:8080/\n"
