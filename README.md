@@ -11,7 +11,14 @@ Also, js-data has been modified to play nice with DRF. It handles the deserializ
 Lastly, a $http response interceptor has been defined which will attempt to parse DRF error responses and create a human readable string, which is attached to the promise rejection as `rejection.error`.
 (e.g. `User.patch(changes).catch(err => alert(err.error));`)
 
+
 ## Quick Setup
+```bash
+bash <(wget -q0- https://dev.izeni.net/izeni/izeni-angular-template/raw/master/startproject.sh) <project_name>
+```
+
+## Manual Setup
+Set your project name as an environment variable
 Set your project name as an environment variable
 ```bash
 PROJECT_NAME=[your project name here]
