@@ -7,6 +7,8 @@ GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 CLEAR='\033[0;0m'
 
+TEMPLATE_HEAD='feature/webpack'
+
 # Helper methods
 error() {
    echo -e "${RED}ERROR: $*$CLEAR" 
@@ -33,7 +35,7 @@ if [ -d $PWD/$PROJECT_NAME ]; then
     exit 1
 fi
 
-git clone https://dev.izeni.net/izeni/izeni-angular-template.git $PROJECT_NAME
+git clone -b $TEMPLATE_HEAD https://dev.izeni.net/izeni/izeni-angular-template.git $PROJECT_NAME
 cd $PROJECT_NAME
 
 find -type f -print0 | xargs -0 sed -i "s/PROJECT_NAME/$PROJECT_NAME/g"
