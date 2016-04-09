@@ -35,9 +35,9 @@ module.exports = {
     extensions: ['', '.webpack.js', '.web.js', '.js', '.css', '.less', '.scss'],
     // Foundation currently has a known issue where the npm package cannot use a simple import
     alias: {
-        'foundation-apps': path.join(__dirname, '/node_modules/foundation-apps/dist/js/foundation-apps.js'),
-        'foundation-tpls': path.join(__dirname, '/node_modules/foundation-apps/dist/js/foundation-apps-templates.js'),
-      }
+      'foundation-apps': path.join(__dirname, '/node_modules/foundation-apps/dist/js/foundation-apps.js'),
+      'foundation-tpls': path.join(__dirname, '/node_modules/foundation-apps/dist/js/foundation-apps-templates.js'),
+    }
   },
 
   module: {
@@ -76,8 +76,8 @@ module.exports = {
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
-            'file?name=/assets/img/[name].[ext]',
-            'image-webpack?optimizationLevel=2&interlaced=false&progressive=true'
+          'file?name=/assets/img/[name].[ext]',
+          'image-webpack?optimizationLevel=2&interlaced=false&progressive=true'
         ]
       },
       {
