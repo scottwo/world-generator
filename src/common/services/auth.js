@@ -3,6 +3,7 @@ import {config} from 'config.js';
 import 'common/models/User';
 import 'common/services/session';
 
+/*@ngInject*/
 function authRun (auth, $rootScope, $state) {
   auth.init();
 
@@ -27,6 +28,7 @@ function authRun (auth, $rootScope, $state) {
 }
 
 class AuthService {
+  /*@ngInject*/
   constructor ($http, $q, $rootScope, $cookies, $state, User, DS, session) {
     this.$http = $http;
     this.$q = $q;

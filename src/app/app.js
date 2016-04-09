@@ -16,6 +16,7 @@ import 'common/services';
 import 'common/directives';
 
 
+/*@ngInject*/
 function config ($urlRouterProvider, $locationProvider, $stateProvider) {
   $urlRouterProvider.otherwise('/');
   $locationProvider.html5Mode(true);
@@ -31,6 +32,7 @@ class MainController {
   }
 }
 
+/*@ngInject*/
 function run ($rootScope, $window, $timeout, $state) {
   $rootScope.$on('$stateChangeStart', () => {
     $window.scrollTo(0,0);

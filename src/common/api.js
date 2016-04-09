@@ -1,6 +1,7 @@
 import {Paging} from 'common/services/paging';
 import {config} from 'config';
 
+/*@ngInject*/
 function apiConfig (DSProvider, DSHttpAdapterProvider, $httpProvider) {
   DSProvider.defaults.basePath = config.apiUrl;
   console.log(DSProvider.defaults.basePath);
@@ -23,6 +24,7 @@ function apiConfig (DSProvider, DSHttpAdapterProvider, $httpProvider) {
   $httpProvider.interceptors.push('notifyInterceptor', 'errorInterceptor');
 }
 
+/*@ngInject*/
 function errorInterceptor ($q) {
   function formErrorMessage (obj) {
     if(typeof obj !== 'object') {
@@ -62,6 +64,7 @@ function errorInterceptor ($q) {
   };
 }
 
+/*@ngInject*/
 function apiRun (DS, DSHttpAdapter, $q, $http) {
   function getResource (model) {
     return DS.definitions[model];

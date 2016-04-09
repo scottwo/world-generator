@@ -1,12 +1,14 @@
 let HomeTpl = require('./home.tpl.html');
 
 class HomeController {
+  /*@ngInject*/
   constructor (user, Notify) {
     this.user = user;
     Notify.info('Hello World!');
   }
 }
 
+/*@ngInject*/
 function config ($stateProvider) {
   $stateProvider.state('PROJECT_NAME.home', {
     url: '',

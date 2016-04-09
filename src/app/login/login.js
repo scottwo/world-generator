@@ -4,6 +4,7 @@ import {config} from 'config';
 let LoginTpl = require('./login.tpl.html');
 
 class LoginController {
+  /*@ngInject*/
   constructor (auth, $state, $stateParams, User) {
     this.auth = auth;
     this.$state = $state;
@@ -51,6 +52,7 @@ class LoginController {
   }
 }
 
+/*@ngInject*/
 function moduleConfig ($stateProvider) {
   $stateProvider.state('PROJECT_NAME.login', {
     url: 'login',

@@ -1,6 +1,7 @@
 import 'common/api';
 import {config} from 'config';
 
+/*@ngInject*/
 function UserFactory (DS, $http) {
   let User = DS.defineResource({
     name: 'User',

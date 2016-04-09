@@ -2,6 +2,7 @@ var webpack               = require('webpack'),
     path                  = require('path'),
     WebpackNotifierPlugin = require('webpack-notifier'),
     autoprefixer          = require('autoprefixer'),
+    ngAnnotatePlugin      = require('ng-annotate-webpack-plugin'),
 
     config                = `./config/${process.env.NODE_ENV || 'dev'}.js`,
     env                   = require(config);
@@ -14,7 +15,8 @@ module.exports = {
     new webpack.DefinePlugin({
       API_CONFIG: env
     }),
-    new WebpackNotifierPlugin({alwaysNotify: true})
+    new WebpackNotifierPlugin({alwaysNotify: true}),
+    new ngAnnotatePlugin({add: true})
   ],
   context: path.join(__dirname, '/src'),
   entry: {

@@ -1,6 +1,7 @@
 import 'common/modals';
 
 class ConfirmModalController {
+  /*@ngInject*/
   constructor(Modal) {
     //create local references for this modal's instance, data, and promise.
     this.$modal = Modal.confirm.instance;

@@ -1,6 +1,7 @@
 import 'common/modals/confirm/confirm';
 
 class Modal {
+  /*@ngInject*/
   constructor ($compile, $q, ModalFactory, FoundationApi) {
     this.$compile = $compile;
     this.$q = $q;

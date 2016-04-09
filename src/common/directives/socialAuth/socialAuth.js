@@ -2,6 +2,7 @@ function rand () {
   return Math.ceil(Math.random() * 1000000000000);
 }
 
+/*@ngInject*/
 function socialAuth ($cookies) {
   return {
     restrict: 'E',

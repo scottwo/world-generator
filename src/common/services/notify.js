@@ -1,4 +1,5 @@
 class Notify {
+  /*@ngInject*/
   constructor (toastr) {
     this.toastr = toastr;
   }
@@ -54,6 +55,7 @@ class Notify {
   }
 }
 
+/*@ngInject*/
 function notifyInterceptor ($q, $injector) {
   var errors = [0, 400, 403, 500],
     Notify;
@@ -74,6 +76,7 @@ function notifyInterceptor ($q, $injector) {
   };
 }
 
+/*@ngInject*/
 function NotifyConfig (toastrConfig) {
   angular.extend(toastrConfig, {
     closeButton: true,

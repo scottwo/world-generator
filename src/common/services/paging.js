@@ -10,6 +10,7 @@ var defaults = {
 };
 
 export class Paging {
+  /*@ngInject*/
   constructor ($q, $http, options, resource) {
     this.$q = $q;
     this.$http = $http;

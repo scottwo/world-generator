@@ -1,4 +1,5 @@
 class Session {
+  /*@ngInject*/
   constructor ($window) {
     this.sessionStorage = $window.sessionStorage;
   }
