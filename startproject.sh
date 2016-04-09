@@ -37,6 +37,7 @@ fi
 
 git clone -b $TEMPLATE_HEAD https://dev.izeni.net/izeni/izeni-angular-template.git $PROJECT_NAME
 cd $PROJECT_NAME
+rm -rf .git
 
 find -type f -print0 | xargs -0 sed -i "s/PROJECT_NAME/$PROJECT_NAME/g"
 npm install
