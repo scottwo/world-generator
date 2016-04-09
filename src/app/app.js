@@ -13,7 +13,6 @@ import 'app/login/login';
 import 'common/models';
 import 'common/modals';
 import 'common/services';
-import 'common/directives';
 import 'common/components';
 
 
@@ -83,7 +82,7 @@ angular
   'models',
   'modals',
   'services',
-  'directives',
+  'components',
   'PROJECT_NAME.home',
   'PROJECT_NAME.login',
   'foundation'
