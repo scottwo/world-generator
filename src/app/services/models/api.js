@@ -1,5 +1,5 @@
-import {Paging} from 'common/services/paging';
-import {config} from 'config';
+import {Paging} from 'app/services/paging';
+import {config} from '../../../config';
 
 /*@ngInject*/
 function apiConfig (DSProvider, DSHttpAdapterProvider, $httpProvider) {

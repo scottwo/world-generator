@@ -1,44 +1,17 @@
+import {config} from '../../config';
+import 'app/services/models/User';
+import 'app/services/session';
 
-import {config} from 'config.js';
-import 'common/models/User';
-import 'common/services/session';
-
-/*@ngInject*/
-function authRun (auth, $rootScope, $state) {
+function authRun (auth) {
   auth.init();
-
-  // Listen for state change errors.
-  $rootScope.$on('$stateChangeError', stateChangeError);
-
-  function stateChangeError (e, toState, toParams, fromState, fromParams, error) {
-    // Check if it was an authentication error.
-    if (error && error.auth) {
-      if(e) {
-        e.preventDefault();
-      }
-
-      $state.go('PROJECT_NAME.login', {
-        redirectState: toState.name,
-        redirectParams: toParams
-      }, {location: 'replace'});
-    } else {
-      console.error(error);
-    }
-  }
 }
 
 class AuthService {
-  /*@ngInject*/
-  constructor ($http, $q, $rootScope, $cookies, $state, User, DS, session) {
-    this.$http = $http;
-    this.$q = $q;
-    this.$rootScope = $rootScope;
-    this.$cookies = $cookies;
-    this.$state = $state;
-    this.User = User;
-    this.DS = DS;
-    this.session = session;
-    this.request = $q.reject('Not initialized');
+  constructor ($http, $q, $rootScope, $cookies, User, DS, session, $rootRouter) {
+    Object.assign(this, {
+      $http, $q, $rootScope, $cookies, User, DS, session, $rootRouter,
+      request: $q.reject(`Not Initialized`),
+    })
   }
 
   /**
@@ -74,7 +47,7 @@ class AuthService {
 
   onLogout () {
     this.$rootScope.$evalAsync(() => {
-      this.$state.go('PROJECT_NAME.login');
+      this.$rootRouter.navigate(['Login']);
     });
   }
 
@@ -97,7 +70,7 @@ class AuthService {
       }, err => {
         this._clearAuth();
         if(err.data.detail === 'Invalid token.') {
-          this.$state.go('PROJECT_NAME.login');
+          this.$rootRouter.navigate(['Login']);
         }
         deferred.reject(err);
       });
@@ -113,10 +86,6 @@ class AuthService {
 
   /**
   * Sets the authToken in the session storage and the Authorization header.
-  *
-  * @param {string} authToken The auth token to store.
-  *
-  * @private
   */
   _setAuth (authToken, userId) {
     this.$cookies.put('authToken', authToken);
@@ -127,8 +96,6 @@ class AuthService {
   /**
   * Removes the auth token and userId from cookie storage, removes user from
   * session storage.
-  *
-  * @private
   */
   _clearAuth () {
     this.$cookies.remove('authToken');
@@ -143,11 +110,6 @@ class AuthService {
   * auth token is saved to cookies and the Authorization
   * header is set. If the request failed the auth token and Authorization
   * header will be deleted.
-  *
-  * @param {string} username Username of the user.
-  * @param {string} password Password of the user.
-  *
-  * @returns {promise}
   */
   login (username, password) {
     return this.$http.post(config.authTokenUrl, {
@@ -175,9 +137,6 @@ class AuthService {
     this.onLogout();
   }
 
-  /**
-  *
-  */
   oauth (provider, params) {
     return this.$http.get(config.oauthUrl + provider + '/', {
       params
@@ -193,10 +152,6 @@ class AuthService {
   /**
   * Sends a reset password request using the passed email or
   * this.user's primary_email
-  *
-  * @param {String} email Email to reset password for.
-  *
-  * @returns {Promise}
   */
   resetPassword (email=this.user.email) {
     return this.$http.post(config.resetPassword + email + '/');
@@ -204,10 +159,6 @@ class AuthService {
 
   /**
   * Prompts the current user to input a new password using the passed token.
-  *
-  * @param {String} token Token used to change the password
-  *
-  * @returns {Promise}
   */
   changePassword (token) {
     let pass = prompt('Change Password');
@@ -218,10 +169,6 @@ class AuthService {
 
   /**
   * Sends a verification request using the passed verification token
-  *
-  * @param {String} token Token to verify
-  *
-  * @returns {Promise}
   */
   verify (token) {
     return this.$http.post(`${config.emailVerify}${token}/`);
@@ -245,8 +192,6 @@ class AuthService {
   /**
   * Returns true if the current session has an auth token stored. Returns
   * false otherwise.
-  *
-  * @returns {boolean}
   */
   isAuthenticated () {
     return !!this.$cookies.get('authToken');
@@ -255,8 +200,6 @@ class AuthService {
   /**
   * Promise that will resolve when the user is authenticated and reject
   * when they are not. Used for route based authentication.
-  *
-  * @returns {promise}
   */
   requireLoggedIn () {
     if (this.isAuthenticated()) {
@@ -275,10 +218,10 @@ class AuthService {
 }
 
 angular
-.module('services.auth', [
-  'ngCookies',
-  'models.User',
-  'services.session',
-])
-.run(authRun)
-.service('auth', AuthService);
+  .module('services.auth', [
+    'ngCookies',
+    'models.User',
+    'services.session',
+  ])
+  .service('auth', AuthService)
+  .run(authRun);

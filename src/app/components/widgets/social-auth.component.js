@@ -34,4 +34,4 @@ class socialAuthController {
 }
 
 angular.module('components.socialAuth', ['ngCookies'])
-.component('socialAuth', new socialAuth());
+  .component('socialAuth', new socialAuth());

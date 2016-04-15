@@ -1,4 +1,4 @@
-import 'common/services/auth/auth';
+import 'app/services/auth';
 
 describe('services.auth', function () {
     var auth, $httpBackend, $window, $http, $rootScope, $cookies,

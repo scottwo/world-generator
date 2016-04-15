@@ -2,7 +2,7 @@
 import angular from 'angular';
 
 // Import app to be bootstrapped.
-import 'app/app';
+import 'app/app.component';
 require('./scss/main.scss');
 require('./index.html');
 
