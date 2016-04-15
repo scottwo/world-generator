@@ -1,4 +1,4 @@
-import 'common/modals/confirm/confirm';
+import 'common/modals/confirm.modal';
 
 class Modal {
   /*@ngInject*/
@@ -78,7 +78,7 @@ class Modal {
 }
 
 angular
-.module('modals', [
-  'modals.confirm'
-])
-.service('Modal', Modal);
+  .module('modals', [
+    'modals.confirm'
+  ])
+  .service('Modal', Modal);

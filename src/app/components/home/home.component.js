@@ -1,35 +1,20 @@
-let HomeTpl = require('./home.tpl.html');
+import {BaseClass} from '../../base-class'
 
-class HomeController {
-  /*@ngInject*/
-  constructor (user, Notify) {
-    this.user = user;
+class HomeController extends BaseClass {
+  constructor (Notify, $rootRouter, $rootScope, auth) {
+    super($rootRouter, $rootScope, auth);
+    this.title = `Home | PROJECT_TITLE`;
     Notify.info('Hello World!');
   }
 }
 
-/*@ngInject*/
-function config ($stateProvider) {
-  $stateProvider.state('PROJECT_NAME.home', {
-    url: '',
-    views: {
-      'main@': {
-        controller: 'HomeController',
-        controllerAs: 'HomeCtrl',
-        templateUrl: HomeTpl
-      }
-    },
-    resolve: {
-      $title: () => 'Home',
-      loggedIn: auth => auth.requireLoggedIn(),
-      user: (loggedIn, auth) => auth.resolveUser()
+angular
+  .module('PROJECT_NAME.home', [])
+  .config(config)
+  .component(`home`, {
+    controller: HomeController,
+    templateUrl: require(`./home.component.html`),
+    bindings: {
+      $router: `<`,
     }
   });
-}
-
-angular
-.module('PROJECT_NAME.home', [
-  'ui.router',
-])
-.config(config)
-.controller('HomeController', HomeController);

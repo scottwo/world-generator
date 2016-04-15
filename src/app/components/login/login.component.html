@@ -2,25 +2,25 @@
     <a ui-sref="PROJECT_NAME.home"><img src="/assets/img/logo.png" class="login__logo"></a>
     <div class="login__forms">
         <h4 class="login__title">Login</h4>
-        <form ng-submit="LoginCtrl.login()" ng-if="!LoginCtrl.showReset" class="login__form">
-            <p class="error" ng-if="LoginCtrl.error">{{ LoginCtrl.error }}</p>
-            <input type="email" name="username" id="username" ng-model="LoginCtrl.username" placeholder="Email Address">
-            <input type="password" name="password" id="password" ng-model="LoginCtrl.password" placeholder="Password">
+        <form ng-submit="$ctrl.login()" ng-if="!$ctrl.showReset" class="login__form">
+            <p class="error" ng-if="$ctrl.error">{{ $ctrl.error }}</p>
+            <input type="email" name="username" id="username" ng-model="$ctrl.username" placeholder="Email Address">
+            <input type="password" name="password" id="password" ng-model="$ctrl.password" placeholder="Password">
             <div>
-                <a href="" class="login__link" ng-click="LoginCtrl.showReset = !LoginCtrl.showReset">
+                <a href="" class="login__link" ng-click="$ctrl.showReset = !$ctrl.showReset">
                     Forgot Password?
                 </a>
                 <button type="submit" class="btn"
-                    ng-disabled="!LoginCtrl.username || !LoginCtrl.password">
+                    ng-disabled="!$ctrl.username || !$ctrl.password">
                     Login
                 </button>
             </div>
-            <social-auth oauth="oauth" ng-repeat="oauth in LoginCtrl.oauth"></social-auth>
+            <social-auth oauth="oauth" ng-repeat="oauth in $ctrl.oauth"></social-auth>
         </form>
 
-        <form ng-submit="LoginCtrl.reset()" ng-if="LoginCtrl.showReset" class="login__reset">
-            <input type="email" id="email" name="username" placeholder="Email Address" ng-model="LoginCtrl.username">
-            <a href="" class="login__link" ng-click="LoginCtrl.showReset = !LoginCtrl.showReset">
+        <form ng-submit="$ctrl.reset()" ng-if="$ctrl.showReset" class="login__reset">
+            <input type="email" id="email" name="username" placeholder="Email Address" ng-model="$ctrl.username">
+            <a href="" class="login__link" ng-click="$ctrl.showReset = !$ctrl.showReset">
                 Remember Password?
             </a>
             <button type="submit" class="btn">Reset Password</button>
