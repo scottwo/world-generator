@@ -1,4 +1,4 @@
-import 'common/modals/confirm.modal';
+import 'app/modals/confirm.modal';
 
 class Modal {
   /*@ngInject*/

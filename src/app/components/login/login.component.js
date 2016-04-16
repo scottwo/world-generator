@@ -1,5 +1,3 @@
-import 'app/services/auth';
-import 'app/services/models/User';
 import {config} from '../../../config';
 import {BaseClass} from '../../base-class';
 
@@ -62,6 +60,6 @@ class LoginController extends BaseClass {
 angular.module('components.login', [])
   .component('login', {
     controller: LoginController,
-    templateUrl: require('components/login/login.tpl.html'),
+    templateUrl: require('./login.component.html'),
     bindings: {$router: '<'},
   });

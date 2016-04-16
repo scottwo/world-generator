@@ -1,4 +1,4 @@
-import 'common/modals';
+import '../modals';
 
 class ConfirmModalController {
   /*@ngInject*/

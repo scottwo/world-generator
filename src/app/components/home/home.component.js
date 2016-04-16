@@ -10,7 +10,6 @@ class HomeController extends BaseClass {
 
 angular
   .module('PROJECT_NAME.home', [])
-  .config(config)
   .component(`home`, {
     controller: HomeController,
     templateUrl: require(`./home.component.html`),

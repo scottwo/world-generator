@@ -1,4 +1,4 @@
-let template = require('./socialAuth.tpl.html');
+let template = require('./social-auth.component.html');
 
 function rand () {
   return Math.ceil(Math.random() * 1000000000000);
