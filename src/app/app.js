@@ -1,3 +1,4 @@
+import '@angular/router/angular1/angular_1_router';
 import 'js-data';
 import 'js-data-angular';
 import 'lodash';
@@ -7,8 +8,7 @@ import 'angular-toastr';
 import 'foundation-apps';
 import 'foundation-tpls';
 
-import 'app/home/home';
-import 'app/login/login';
+
 import 'app/services/models';
 import 'app/modals';
 import 'app/services';
@@ -26,6 +26,7 @@ class MainController {
 
 angular
   .module('PROJECT_NAME', [
+    'ngComponentRouter',
     'models',
     'modals',
     'services',

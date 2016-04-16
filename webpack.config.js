@@ -59,7 +59,7 @@ module.exports = {
         loader: 'babel'
       },
       {
-        test: /\.tpl\.html$/,
+        test: /\.html$/,
         exclude: /node_modules/,
         loader: 'ngtemplate?relativeTo=/src/!html'
       },

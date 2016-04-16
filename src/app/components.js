@@ -1,6 +1,6 @@
-import 'components/widgets/socialAuth';
-import 'components/home/home.component';
-import 'components/login/login.component';
+import 'app/components/widgets/social-auth.component';
+import 'app/components/home/home.component';
+import 'app/components/login/login.component';
 
 angular.module('components', [
   'components.socialAuth'

@@ -43,4 +43,4 @@ class Session {
 }
 
 angular.module('services.session', [])
-.service('session', Session);
+  .service('session', Session);

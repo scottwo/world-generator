@@ -1,15 +1,12 @@
-import 'common/services/auth';
-import 'common/models/User';
-import {config} from 'config';
-let LoginTpl = require('./login.tpl.html');
+import {config} from '../../../config';
+import {BaseClass} from '../../base-class';
 
-class LoginController {
-  /*@ngInject*/
-  constructor (auth, $state, $stateParams, User) {
-    this.auth = auth;
-    this.$state = $state;
-    this.$stateParams = $stateParams;
-    this.User = User;
+class LoginController extends BaseClass {
+  constructor ($rootRouter, $rootScope, auth, User, Notify) {
+    super($rootRouter, $rootScope, auth);
+    this.assignArgs(this, arguments);
+    this.title = `Login | PROJECT_NAME`;
+
     let oauth = [{
       provider: 'google-oauth2',
       name: 'Google',
@@ -31,11 +28,19 @@ class LoginController {
 
   login () {
     this.auth.login(this.username, this.password).then(() => {
-      this.$state.go(
-        this.$stateParams.redirectState,
-        this.$stateParams.redirectParams
-      );
+      this.$router.navigate(['Home']);
     }, err => {
+      this.Notify.toastr.error('Could not log in...');
+      this.error = err.error;
+    });
+  }
+
+  createUser(newUser) {
+    this.User.create(newUser).then(() => {
+      this.Notify.toastr.info('Please validate account before logging in.');
+      this.$router.navigate(['Home']);
+    }, err => {
+      this.Notify.toastr.error('Could not create user...');
       this.error = err.error;
     });
   }
@@ -52,66 +57,9 @@ class LoginController {
   }
 }
 
-/*@ngInject*/
-function moduleConfig ($stateProvider) {
-  $stateProvider.state('PROJECT_NAME.login', {
-    url: 'login',
-    params: {
-      redirectState: 'PROJECT_NAME.home',
-      redirectParams: null
-    },
-    views: {
-      'main@': {
-        controller: 'LoginController',
-        controllerAs: 'LoginCtrl',
-        templateUrl: LoginTpl
-      }
-    },
-    resolve: {
-      $title: function() {return 'Login';},
-      user: auth => auth.resolveUser().catch(() => {})
-    },
-    onEnter: ($state, user) => {
-      if(user) {
-        $state.go('PROJECT_NAME.home');
-      }
-    }
+angular.module('components.login', [])
+  .component('login', {
+    controller: LoginController,
+    templateUrl: require('./login.component.html'),
+    bindings: {$router: '<'},
   });
-  $stateProvider.state('PROJECT_NAME.logout', {
-    url: 'logout',
-    onEnter: auth => {
-      auth.logout();
-    }
-  });
-  $stateProvider.state('PROJECT_NAME.oauth', {
-    url: 'oauth/:provider?code&state',
-    onEnter: ($stateParams, $state, $cookies, Notify, auth) => {
-      let provider = $stateParams.provider,
-        storedState = $cookies.get(provider + '-state');
-      if ($stateParams.state === storedState) {
-        $cookies.remove(provider + '-state');
-        auth.oauth(provider, {
-          code: $stateParams.code,
-          state: storedState
-        }).then(() => {
-          $state.go('PROJECT_NAME.home');
-        }, () => {
-          Notify.error('Unable to login using oauth', {timeOut: 0});
-          $state.go('PROJECT_NAME.login');
-        });
-      } else {
-        Notify.error('Invalid oauth state!', {timeOut: 0});
-        $state.go('PROJECT_NAME.login');
-      }
-    }
-  });
-}
-
-angular
-.module('PROJECT_NAME.login', [
-  'ui.router',
-  'services.auth',
-  'models.User',
-])
-.config(moduleConfig)
-.controller('LoginController', LoginController);

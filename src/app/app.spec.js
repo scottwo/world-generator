@@ -1,4 +1,4 @@
-import 'app/app.component';
+import 'app/app';
 
 angular.module('config', []);
 angular.module('htmlTemplates', []);

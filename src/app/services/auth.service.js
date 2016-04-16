@@ -1,6 +1,6 @@
 import {config} from '../../config';
-import 'app/services/models/User';
-import 'app/services/session';
+import 'app/services/models/User.model';
+import 'app/services/session.service';
 
 function authRun (auth) {
   auth.init();
