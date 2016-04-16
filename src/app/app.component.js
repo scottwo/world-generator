@@ -30,8 +30,6 @@ angular
     'modals',
     'services',
     'components',
-    'PROJECT_NAME.home',
-    'PROJECT_NAME.login',
     'foundation'
   ])
   .component('mainComponent', {
