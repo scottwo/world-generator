@@ -4,7 +4,6 @@ import {config} from '../../../config';
 /*@ngInject*/
 function apiConfig (DSProvider, DSHttpAdapterProvider, $httpProvider) {
   DSProvider.defaults.basePath = config.apiUrl;
-  console.log(DSProvider.defaults.basePath);
   DSHttpAdapterProvider.defaults.forceTrailingSlash = true;
   DSHttpAdapterProvider.defaults.log = false;
 

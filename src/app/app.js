@@ -13,6 +13,7 @@ import 'app/services/models';
 import 'app/modals';
 import 'app/services';
 import 'app/components';
+import 'app/base-class';
 
 
 function config($locationProvider) {
@@ -31,8 +32,12 @@ angular
     'modals',
     'services',
     'components',
-    'foundation'
+    'foundation',
   ])
+  /**
+   * We currently recommend that you keep all of your route configuration in 
+   * this file.  It's also easier to avoid using '...' in $routeConfig's paths.
+   */
   .component('mainComponent', {
     controller: MainController,
     template: '<ng-outlet></ng-outlet>',

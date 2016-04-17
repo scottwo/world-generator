@@ -2,10 +2,9 @@ import {config} from '../../../config';
 import {BaseClass} from '../../base-class';
 
 class LoginController extends BaseClass {
-  constructor ($rootRouter, $rootScope, auth, User, Notify) {
-    super($rootRouter, $rootScope, auth);
+  constructor ($rootRouter, auth, User, Notify) {
+    super($rootRouter, auth);
     this.assignArgs(this, arguments);
-    this.title = `Login | PROJECT_NAME`;
 
     let oauth = [{
       provider: 'google-oauth2',

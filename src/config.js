@@ -1,18 +1,3 @@
-/*
--    module.exports = function (config) {
--        config.baseUrl = config.apiHost + '/';
--        config.apiUrl = config.baseUrl + 'api/';
--        config.authTokenUrl = config.baseUrl + 'api-token-auth/';
--        config.oauthUrl = config.baseUrl + 'social/';
-
--        config.changePassword = config.apiUrl + 'reset/';
--        config.resetPassword = config.apiUrl + 'reset-password/';
--        config.emailVerify = config.apiUrl + 'verify/';
--        config.impersonate = config.apiUrl + 'users/impersonate/';
--
--        return config;
-*/
-
 let createWithApiUrl = (str) => {
   return `${API_CONFIG.apiHost}/api/${str}/`;
 };
@@ -35,8 +20,5 @@ var config =  {
 };
 
 config = Object.assign(API_CONFIG, config);
-console.log(config);
 
 export { config };
-// let hello = 1 + 2;
-// export { hello };

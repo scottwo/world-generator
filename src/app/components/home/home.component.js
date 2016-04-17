@@ -1,9 +1,8 @@
 import {BaseClass} from '../../base-class'
 
 class HomeController extends BaseClass {
-  constructor (Notify, $rootRouter, $rootScope, auth) {
-    super($rootRouter, $rootScope, auth);
-    this.title = `Home | PROJECT_TITLE`;
+  constructor (Notify, $rootRouter, auth) {
+    super($rootRouter, auth);
     Notify.info('Hello World!');
   }
 }
