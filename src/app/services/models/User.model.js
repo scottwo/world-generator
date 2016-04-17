@@ -1,4 +1,4 @@
-import 'app/services/models/api';
+import 'app/api';
 import {config} from 'config';
 
 /*@ngInject*/
