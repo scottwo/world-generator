@@ -1,4 +1,5 @@
 import '../modals';
+const ConfirmModalHtml = require('./confirm.modal.html');
 
 class ConfirmModalController {
   /*@ngInject*/
@@ -37,7 +38,7 @@ function ConfirmModalDirective() {
     scope: {},
     controller: 'ConfirmModalController',
     controllerAs: 'ConfirmModalCtrl',
-    templateUrl: 'common/modals/confirm/confirm.modal.html'
+    templateUrl: ConfirmModalHtml
   };
 }
 
