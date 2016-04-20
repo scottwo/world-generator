@@ -29,17 +29,17 @@ class LoginController extends BaseClass {
     this.auth.login(this.username, this.password).then(() => {
       this.$router.navigate(['Home']);
     }, err => {
-      this.Notify.toastr.error('Could not log in...');
+      this.Notify.publish({color: 'alert', title: 'Could not log in...'});
       this.error = err.error;
     });
   }
 
   createUser(newUser) {
     this.User.create(newUser).then(() => {
-      this.Notify.toastr.info('Please validate account before logging in.');
+      this.Notify.publish({title:'Please validate account before logging in.'});
       this.$router.navigate(['Home']);
     }, err => {
-      this.Notify.toastr.error('Could not create user...');
+      this.Notify.publish({color: 'alert', title: 'Could not create user...'});
       this.error = err.error;
     });
   }

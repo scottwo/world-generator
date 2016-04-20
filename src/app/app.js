@@ -4,7 +4,6 @@ import 'js-data-angular';
 import 'lodash';
 import 'angular-animate';
 import 'angular-cookies';
-import 'angular-toastr';
 import 'foundation-apps';
 import 'foundation-tpls';
 
@@ -35,7 +34,7 @@ angular
     'foundation',
   ])
   /**
-   * We currently recommend that you keep all of your route configuration in 
+   * We currently recommend that you keep all of your route configuration in
    * this file.  It's also easier to avoid using '...' in $routeConfig's paths.
    */
   .component('mainComponent', {

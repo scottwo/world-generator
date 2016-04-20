@@ -1,9 +1,12 @@
 import {BaseClass} from '../../base-class'
 
 class HomeController extends BaseClass {
-  constructor (Notify, $rootRouter, auth) {
+  constructor ($rootRouter, auth, Notify) {
     super($rootRouter, auth);
-    Notify.info('Hello World!');
+    Notify.publish({
+      title: 'Hello',
+      content: 'World!',
+    });
   }
 }
 

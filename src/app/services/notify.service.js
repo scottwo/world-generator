@@ -1,56 +1,46 @@
 class Notify {
   /*@ngInject*/
-  constructor (toastr) {
-    this.toastr = toastr;
+  constructor (FoundationApi) {
+    this.FoundationApi = FoundationApi;
   }
 
-  b (funcName) {
-    if(!funcName || !this[funcName]) {
-      throw new Error('Invalid Notify Function: ' + funcName);
-    }
-    return this[funcName].bind(this);
-  }
-
-  success (message, options={}) {
-    this.toastr.success(message, options.title, options);
-  }
-
-  info (message, options={}) {
-    this.toastr.info(message, options.title, options);
-  }
-
-  error (message, options={}) {
-    this.toastr.error(message, options.title, options);
-  }
-
-  warning (message, options={}) {
-    this.toastr.warning(message, options.title, options);
+  publish (options) {
+    /*
+    OPTIONS:
+        title: 'string'
+        content: 'string'
+        image: 'url string'
+        color: 'success', 'info', 'warning', or 'alert'
+        autoclose: number of milliseconds
+    override/add to default Foundation notification styles in _settings.scss
+    */
+    if (!options.color) options.color = 'info';
+    if (!options.autoclose) options.autoclose = 3000;
+    this.FoundationApi.publish('main-notifications', options);
   }
 
   serverError (error) {
     if(!error) {
       console.error('Programming Error: Server Error was null/undefined');
-      this.error('Service Error');
+      this.publish({color: 'alert', title: 'Service Error'});
     } else if(!error.status) {
       console.error(error);
-      this.error('Unable to connect to server!', {
-        timeOut: 0,
-        extendedTimeout: 2000
-      });
+      this.publish({color: 'alert', title: 'Unable to connect to server!'});
     } else if(error.status === 400) {
-      this.warning(error.error, {
-        title: 'Invalid Request'
+      this.publish({
+        color: 'warning',
+        title: 'Invalid Request',
+        content: error.error
       });
     } else if(error.status === 401) {
-      this.warning(error.error, {
-        title: 'Login Failure'
+      this.publish({
+        color: 'warning',
+        title: 'Login Failure',
+        content: error.error
       });
     } else {
       console.error(error);
-      this.error('Server Error', {
-        timeOut: 0,
-        extendedTimeout: 2000
-      });
+      this.publish({color: 'alert', title: 'Server Error'});
     }
   }
 }
@@ -76,27 +66,7 @@ function notifyInterceptor ($q, $injector) {
   };
 }
 
-/*@ngInject*/
-function NotifyConfig (toastrConfig) {
-  angular.extend(toastrConfig, {
-    closeButton: true,
-    iconClasses: {
-      error: 'toastr-error',
-      info: 'toastr-info',
-      success: 'toastr-success',
-      warning: 'toastr-warning'
-    },
-    messageClass: 'toast-message',
-    positionClass: 'toast-bottom toast-container',
-    allowHtml: true
-  });
-}
-
 angular
-.module('services.notify', [
-  'ngAnimate',
-  'toastr'
-])
-.service('Notify', Notify)
-.factory('notifyInterceptor', notifyInterceptor)
-.config(NotifyConfig);
+  .module('services.notify', [])
+  .service('Notify', Notify)
+  .factory('notifyInterceptor', notifyInterceptor);
