@@ -21,6 +21,7 @@
     "angular": "^1.5.3",
     "angular-animate": "^1.4.8",
     "angular-cookies": "^1.5.0",
+    "axios": "^0.9.1",
     "foundation-apps": "^1.2.0",
     "js-data": "^2.8.2",
     "js-data-angular": "^3.1.0",
