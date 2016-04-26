@@ -17,15 +17,6 @@ export class BaseClass {
     /*** You'll need to pass in $rootRouter and auth when super is called in
      * any class that extends this one.*/
     Object.assign(this, {$rootRouter, auth});
-
-    // Redirects user to login page if they aren't authorized.
-    this.auth.requireLoggedIn().then(res=> {
-      this.auth.resolveUser().then(res=> {}, err=> {
-        this.$rootRouter.navigate(['Login']);
-      })
-    }, err=>{
-      this.$rootRouter.navigate(['Login']);
-    });
   }
 
   assignArgs(that, args){
@@ -38,5 +29,21 @@ export class BaseClass {
       argPairs[`${paramNames[i]}`] = Array.from(args)[i];
     }
     Object.assign(this, argPairs);
+  }
+}
+
+export class AuthedBaseClass extends BaseClass {
+  constructor($rootRouter, auth) {
+    super($rootRouter, auth)
+
+    // Redirects user to login page if they aren't authorized.
+    this.auth.requireLoggedIn().then(res=> {
+      this.auth.resolveUser().then(res=> {}, err=> {
+        this.$rootRouter.navigate(['Login']);
+      })
+    }, err=>{
+      this.$rootRouter.navigate(['Login']);
+    });
+
   }
 }
