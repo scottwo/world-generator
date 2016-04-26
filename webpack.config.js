@@ -2,12 +2,14 @@ var webpack               = require('webpack'),
     path                  = require('path'),
     WebpackNotifierPlugin = require('webpack-notifier'),
     autoprefixer          = require('autoprefixer'),
-    ngAnnotatePlugin      = require('ng-annotate-webpack-plugin'),
+
+    // THIS ADDS 15 SECONDS TO RECOMPILING!!! PLEASE FIND A WAY TO SHORTEN THAT BEFORE ADDING IT BACK!
+    // ngAnnotatePlugin      = require('ng-annotate-webpack-plugin'),
 
     config                = `./config/${process.env.NODE_ENV || 'dev'}.js`,
     env                   = require(config);
 
-console.log(env);
+// console.log(env);
 
 module.exports = {
   // Specify logical root of the sourcecode
@@ -16,7 +18,9 @@ module.exports = {
       API_CONFIG: env
     }),
     new WebpackNotifierPlugin({alwaysNotify: true}),
-    new ngAnnotatePlugin({add: true})
+
+    // THIS ADDS 15 SECONDS TO RECOMPILING!!! PLEASE FIND A WAY TO SHORTEN THAT BEFORE ADDING IT BACK!
+    // new ngAnnotatePlugin({add: true})
   ],
   context: path.join(__dirname, '/src'),
   entry: {
