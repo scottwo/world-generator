@@ -1,6 +1,7 @@
 var webpack               = require('webpack'),
     path                  = require('path'),
     WebpackNotifierPlugin = require('webpack-notifier'),
+    ExtractTextPlugin     = require('extract-text-webpack-plugin'),
     autoprefixer          = require('autoprefixer'),
 
     // THIS ADDS 15 SECONDS TO RECOMPILING!!! PLEASE FIND A WAY TO SHORTEN THAT BEFORE ADDING IT BACK!
@@ -11,12 +12,14 @@ var webpack               = require('webpack'),
 
 // console.log(env);
 
+
 module.exports = {
   // Specify logical root of the sourcecode
   plugins: [
     new webpack.DefinePlugin({
       API_CONFIG: env
     }),
+    new ExtractTextPlugin('styles.css', {allChunks: true}),
     new WebpackNotifierPlugin({alwaysNotify: true}),
 
     // THIS ADDS 15 SECONDS TO RECOMPILING!!! PLEASE FIND A WAY TO SHORTEN THAT BEFORE ADDING IT BACK!
@@ -70,12 +73,12 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        loaders: ['style', 'css', 'postcss', 'sass']
+        loader: ExtractTextPlugin.extract('css?sourceMap!postcss!sass?sourceMap')
       },
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        loaders: ['style', 'css', 'postcss']
+        loaders: ['style', 'css?sourceMap', 'postcss']
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
