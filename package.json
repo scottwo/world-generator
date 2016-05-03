@@ -11,7 +11,7 @@
     "url": "git@dev.izeni.net:izeni/izeni-angular-template.git"
   },
   "scripts": {
-    "start": "webpack-dev-server --inline --hot",
+    "start": "webpack-dev-server --inline --hot --host 0.0.0.0 --port 9000",
     "build": "webpack-dev-server --inline --hot",
     "watch": "webpack -w --inline",
     "dist": "webpack"
