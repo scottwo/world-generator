@@ -68,9 +68,7 @@ class Modal {
       },
     };
     _.forOwn(options, (value, key) => {
-      if(defaultOptions[key]) {
-        defaultOptions[key] = value;
-      }
+      defaultOptions[key] = value;
     });
     return defaultOptions;
   }
