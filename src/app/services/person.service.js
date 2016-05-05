@@ -2,9 +2,10 @@ import 'app/services/models/Person.model';
 
 class PersonService {
   /*@ngInject*/
-  constructor (Person, name) {
+  constructor (Person, name, location) {
     this.Person = Person;
     this.name = name;
+    this.location = location;
     this.people = [];
   }
 
@@ -18,6 +19,12 @@ class PersonService {
     if(Math.random() * 10 > 5) {
       gender = 'male';
     }
+    if(!birthdate) {
+      birthdate = new Date();
+    }
+    if(!birthplace) {
+      birthplace = this.location.random(`town`);
+    }
     parents.forEach(id => {
       childParents.push(this.Person.get(id));
     });
@@ -29,7 +36,7 @@ class PersonService {
       // personality: this.generatePersonality(childParents, birthdate, birthplace),
       // characteristics: this.generateCharacteristics(childParents, birthdate, birthplace),
     }
-    console.log(newPerson);
+
     this.people.push(newPerson);
   }
 

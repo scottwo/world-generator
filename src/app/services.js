@@ -3,7 +3,7 @@ import 'app/services/session.service';
 import 'app/services/notify.service';
 import 'app/services/person.service';
 import 'app/services/name.service';
-
+import 'app/services/location.service';
 
 angular.module('services', [
   'services.auth',
@@ -11,4 +11,5 @@ angular.module('services', [
   'services.notify',
   'services.person',
   'services.name',
+  'services.location',
 ]);
