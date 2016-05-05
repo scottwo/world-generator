@@ -5,8 +5,14 @@ ng-click="$ctrl.makePerson()"
 class="button button-raised"
 name="button">Click to add person</button>
 
-<div class="">
-  <p ng-repeat="person in $ctrl.people">
+<div ng-repeat="person in $ctrl.people">
+  <p>
     {{ person.name.first }} {{ person.name.last }} was born {{ person.birthdate }} in {{ person.birthplace }}
+  </p>
+  <p>
+    Their parents are {{ person.relationships.mother.name.first + ' ' + person.relationships.mother.name.last }} and {{ person.relationships.father.name.first + ' ' + person.relationships.father.name.last }}.
+  </p>
+  <p>
+    Their children are <span ng-repeat="child in person.relationships.children">{{ child.name.first + ' ' + child.name.last + ', '}}</span> 
   </p>
 </div>
