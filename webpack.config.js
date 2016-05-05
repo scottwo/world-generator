@@ -90,7 +90,11 @@ module.exports = {
       {
         test: /index\.html$/i,
         loader: 'file?name=index.html'
-      }
+      },
+      {
+        test: /\.json$/,
+        loader: 'json'
+      },
     ]
   },
 

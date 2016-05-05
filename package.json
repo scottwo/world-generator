@@ -23,9 +23,12 @@
     "angular-cookies": "^1.5.0",
     "axios": "^0.9.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5",
     "foundation-apps": "^1.2.0",
+    "human-names": "^1.0.8",
     "js-data": "^2.8.2",
     "js-data-angular": "^3.1.0",
+    "json-loader": "^0.5.4",
     "lodash": "^4.6.1"
   },
   "devDependencies": {

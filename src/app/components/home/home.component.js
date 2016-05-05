@@ -1,12 +1,14 @@
 import {BaseClass} from '../../base-class'
 
 class HomeController extends BaseClass {
-  constructor ($rootRouter, auth, Notify) {
+  constructor ($rootRouter, auth, person, name) {
     super($rootRouter, auth);
-    Notify.publish({
-      title: 'Hello',
-      content: 'World!',
-    });
+    this.person = person;
+    this.people = person.people;
+  }
+
+  makePerson() {
+    this.person.create();
   }
 }
 

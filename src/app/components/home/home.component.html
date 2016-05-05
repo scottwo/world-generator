@@ -1,2 +1,12 @@
-<h1>Hello World!</h1>
-<h3 ng-if="$ctrl.user">Welcome back, {{ $ctrl.user.email }}</h3>
+<h1>All the People</h1>
+
+<button type="button"
+ng-click="$ctrl.makePerson()"
+class="button button-raised"
+name="button">Click to add person</button>
+
+<div class="">
+  <p ng-repeat="person in $ctrl.people">
+    {{ person.name.first }} {{ person.name.last }}
+  </p>
+</div>
