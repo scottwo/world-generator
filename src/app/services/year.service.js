@@ -78,7 +78,7 @@ class YearService {
       }
     });
 
-    this.people.forEach(person => {
+    this.people.forEach((person, index) => {
       if(person.status == 'deceased') {
         return;
       }

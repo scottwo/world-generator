@@ -9,9 +9,9 @@ name="button">Generate {{ $ctrl.numOfYears }} years</button>
 <h3>In the Year: {{$ctrl.year.currentYear}} SB (Since Button)</h3>
 <h3>{{$ctrl.people.length}} people have been born on the planet.</h3>
 
-<p>
+<h2>
   Find one of them:
-</p>
+</h2>
 <input ng-model="$ctrl.searchIndex">
 <button type="button" class="button button-raised" ng-click="$ctrl.findPerson()">Find person!</button>
 
@@ -30,19 +30,9 @@ name="button">Generate {{ $ctrl.numOfYears }} years</button>
     <li ng-repeat="child in $ctrl.soughtPerson.relationships.children">{{child.name.first}} {{child.name.last}}</li>
   </ul>
   <h3 ng-if="$ctrl.soughtPerson.events.death">
-    Died in {{$ctrl.soughtPerson.events.death.place}} in the year {{$ctrl.soughtPerson.events.death.date}}
+    Died in {{$ctrl.soughtPerson.events.death.place}} in the year {{$ctrl.soughtPerson.events.death.date}} at the age of {{$ctrl.soughtPerson.age}}.
   </h3>
 </div>
-
-<!-- <button type="button"
-ng-click="$ctrl.makeParents()"
-class="button button-raised"
-name="button">Click to add first parents</button>
-
-<button type="button"
-ng-click="$ctrl.makePerson()"
-class="button button-raised"
-name="button">Click to add person</button> -->
 
 <!-- <ul>
   <li ng-if="$ctrl.people.length">{{$ctrl.people[0].name.first}} and {{$ctrl.people[1].name.first}} {{$ctrl.people[0].name.last}}</li>
@@ -56,18 +46,3 @@ name="button">Click to add person</button> -->
     <li ng-repeat="child in child.relationships.children" ng-include="'child'"></li>
   </ul>
 </script> -->
-
-<!-- <div ng-repeat="person in $ctrl.people">
-  <p>
-    {{ person.name.first }} {{ person.name.last }} was born {{ person.events.birth.date }} in {{ person.events.birth.place }}
-  </p>
-  <p ng-if="person.relationships.mother && person.relationships.father">
-    Their parents are {{ person.relationships.mother.name.first + ' ' + person.relationships.mother.name.last }} and {{ person.relationships.father.name.first + ' ' + person.relationships.father.name.last }}.
-  </p>
-  <p>
-    They are married to {{ person.relationships.spouse.name.first + ' ' + person.relationships.spouse.name.last }}.
-  </p>
-  <p>
-    Their children are <span ng-repeat="child in person.relationships.children">{{ child.name.first + ' ' + child.name.last + ', '}}</span>
-  </p>
-</div> -->

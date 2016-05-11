@@ -98,12 +98,14 @@ class PersonService {
 
   startWithTwoParents() {
     let birthplace = this.location.random('town');
-    let birthdate = 0;
+    let birthdate = -14;
     let parents = {
       mother: {
         id: UUID.create(),
         name: this.name.generateRandom([{name:{last:'Smith'}}], birthdate, birthplace, 'female'),
         gender: 'female',
+        status: 'alive',
+        age: 14,
         relationships: {
           mother: null,
           father: null,
@@ -115,6 +117,9 @@ class PersonService {
           birth: {
             date: birthdate,
             place: birthplace
+          },
+          marriage: {
+            date: birthdate
           }
         }
       },
@@ -122,6 +127,8 @@ class PersonService {
         id: UUID.create(),
         name: this.name.generateRandom([{name:{last:'Smith'}}], birthdate, birthplace, 'male'),
         gender: 'male',
+        status: 'alive',
+        age: 14,
         relationships: {
           mother: null,
           father: null,
@@ -133,6 +140,9 @@ class PersonService {
           birth: {
             date: birthdate,
             place: birthplace
+          },
+          marriage: {
+            date: birthdate
           }
         }
       }
