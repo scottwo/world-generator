@@ -24,28 +24,36 @@ class YearService {
     let marriedPeople = [];
     let alreadyHadABaby = [];
     //first do marriages, people get married as soon as able.
-    this.people.forEach(person => {
+    this.people.forEach((person, indy) => {
+      if(person.status == 'deceased') {
+        return;
+      }
       if(!person.relationships.spouse && person.age > 14) {
-        this.people.forEach(possibleMatch => {
+        this.people.forEach((possibleMatch, index) => {
           if(person !== possibleMatch &&
-            person.relationships.father !== possibleMatch &&
-            person.relationships.mother !== possibleMatch &&
-            person.gender !== possibleMatch.gender &&
-            !possibleMatch.relationships.spouse &&
-            possibleMatch.age > 14) {
-            person.relationships.spouse = possibleMatch;
-            person.events.marriage = {
+          person.relationships.father !== possibleMatch &&
+          person.relationships.mother !== possibleMatch &&
+          person.gender !== possibleMatch.gender &&
+          !possibleMatch.relationships.spouse &&
+          possibleMatch.age > 14) {
+            if(person.gender === 'female' && person.age > 40 ||
+            possibleMatch.gender === 'female' && possibleMatch.age > 40 ||
+            person.relationships.spouse) {
+              return;
+            }
+            this.people[indy].relationships.spouse = possibleMatch;
+            this.people[indy].events.marriage = {
               date: this.currentYear
             };
-            possibleMatch.relationships.spouse = person;
-            possibleMatch.events.marriage = {
+            this.people[index].relationships.spouse = person;
+            this.people[index].events.marriage = {
               date: this.currentYear
             };
             //Mazel Tov.
-            marriedPeople.push(person);
+            marriedPeople.push(this.people[indy], this.people[index]);
           }
         });
-      } else if (person.relationships.spouse) {
+      } else if (person.relationships.spouse && marriedPeople.indexOf(person) === -1) {
         marriedPeople.push(person);
       }
       //One year older and wiser, too.
@@ -53,7 +61,14 @@ class YearService {
     });
     //then do births. Everyone has one baby per year.
     marriedPeople.forEach(person => {
-      if(alreadyHadABaby.indexOf(person) === -1) {
+      if(person.status == 'deceased') {
+        return;
+      }
+      if(person.gender === 'female' && person.age > 40 ||
+      person.relationships.spouse.gender === 'female' && person.relationships.spouse.age > 40) {
+        return;
+      }
+      if(alreadyHadABaby.indexOf(person) === -1 && person.relationships.children.length < 10) {
         if(person.gender === 'male') {
           this.person.create({mother: person.relationships.spouse, father: person}, this.currentYear);
         } else {
@@ -64,9 +79,15 @@ class YearService {
     });
 
     this.people.forEach(person => {
-      if(person.age > Math.floor(Math.random()*(100-70+1)+70)) {
+      if(person.status == 'deceased') {
+        return;
+      }
+      //We'll just have them die anywhere from 35 to 55 for us.
+      //Add child mortality/birthing mortality/etc later.
+      if(person.age > Math.floor(Math.random()*(55-35+1)+35)) {
         person.events.death = {
-          date: this.currentYear
+          date: this.currentYear,
+          place: this.location.random('town')
         };
         person.status = 'deceased';
       }

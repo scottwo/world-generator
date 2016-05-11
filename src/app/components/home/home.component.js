@@ -7,6 +7,11 @@ class HomeController extends BaseClass {
     this.people = person.people;
     this.year = year;
     this.numOfYears = 1;
+    this.soughtPerson = this.people[0];
+  }
+
+  findPerson() {
+    this.soughtPerson = this.people[this.searchIndex];
   }
 
   makePerson() {

@@ -6,6 +6,34 @@ ng-click="$ctrl.startGenerating()"
 class="button button-raised"
 name="button">Generate {{ $ctrl.numOfYears }} years</button>
 
+<h3>In the Year: {{$ctrl.year.currentYear}} SB (Since Button)</h3>
+<h3>{{$ctrl.people.length}} people have been born on the planet.</h3>
+
+<p>
+  Find one of them:
+</p>
+<input ng-model="$ctrl.searchIndex">
+<button type="button" class="button button-raised" ng-click="$ctrl.findPerson()">Find person!</button>
+
+<div ng-if="$ctrl.soughtPerson">
+  <h2>{{$ctrl.soughtPerson.name.first}} {{$ctrl.soughtPerson.name.last}}</h2>
+  <h3>
+    Born in {{$ctrl.soughtPerson.events.birth.place}} in the year {{$ctrl.soughtPerson.events.birth.date}}.
+  </h3>
+  <h3 ng-if="$ctrl.soughtPerson.relationships.spouse">
+    Married to {{$ctrl.soughtPerson.relationships.spouse.name.first}} {{$ctrl.soughtPerson.relationships.spouse.name.last}} in the year {{$ctrl.soughtPerson.events.marriage.date}}.
+  </h3>
+  <h3 ng-if="$ctrl.soughtPerson.relationships.children.length">
+    Has {{$ctrl.soughtPerson.relationships.children.length}} children:
+  </h3>
+  <ul ng-if="$ctrl.soughtPerson.relationships.children.length">
+    <li ng-repeat="child in $ctrl.soughtPerson.relationships.children">{{child.name.first}} {{child.name.last}}</li>
+  </ul>
+  <h3 ng-if="$ctrl.soughtPerson.events.death">
+    Died in {{$ctrl.soughtPerson.events.death.place}} in the year {{$ctrl.soughtPerson.events.death.date}}
+  </h3>
+</div>
+
 <!-- <button type="button"
 ng-click="$ctrl.makeParents()"
 class="button button-raised"
@@ -16,7 +44,20 @@ ng-click="$ctrl.makePerson()"
 class="button button-raised"
 name="button">Click to add person</button> -->
 
-<div ng-repeat="person in $ctrl.people">
+<!-- <ul>
+  <li ng-if="$ctrl.people.length">{{$ctrl.people[0].name.first}} and {{$ctrl.people[1].name.first}} {{$ctrl.people[0].name.last}}</li>
+  <li ng-repeat="child in $ctrl.people[0].relationships.children" ng-include="'child'"></li>
+</ul>
+
+<script type="text/ng-template" id="child">
+  {{child.name.first}} {{child.name.last}}, born {{child.events.birth.date}} in {{child.events.birth.place}} to {{child.relationships.mother.name.first}} and {{child.relationships.father.name.first}} {{child.relationships.father.name.last}}.
+  <span ng-if="child.status === 'deceased'">They died in {{child.events.death.date}} in {{child.events.death.place}}.</span>
+  <ul ng-if="child.relationships.children">
+    <li ng-repeat="child in child.relationships.children" ng-include="'child'"></li>
+  </ul>
+</script> -->
+
+<!-- <div ng-repeat="person in $ctrl.people">
   <p>
     {{ person.name.first }} {{ person.name.last }} was born {{ person.events.birth.date }} in {{ person.events.birth.place }}
   </p>
@@ -29,4 +70,4 @@ name="button">Click to add person</button> -->
   <p>
     Their children are <span ng-repeat="child in person.relationships.children">{{ child.name.first + ' ' + child.name.last + ', '}}</span>
   </p>
-</div>
+</div> -->
