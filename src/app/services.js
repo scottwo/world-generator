@@ -4,6 +4,7 @@ import 'app/services/notify.service';
 import 'app/services/person.service';
 import 'app/services/name.service';
 import 'app/services/location.service';
+import 'app/services/year.service';
 
 angular.module('services', [
   'services.auth',
@@ -12,4 +13,5 @@ angular.module('services', [
   'services.person',
   'services.name',
   'services.location',
+  'services.year',
 ]);

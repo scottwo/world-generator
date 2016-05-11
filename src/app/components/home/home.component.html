@@ -1,18 +1,32 @@
 <h1>All the People</h1>
 
+<input type="number" ng-model="$ctrl.numOfYears">
+<button type="button"
+ng-click="$ctrl.startGenerating()"
+class="button button-raised"
+name="button">Generate {{ $ctrl.numOfYears }} years</button>
+
+<!-- <button type="button"
+ng-click="$ctrl.makeParents()"
+class="button button-raised"
+name="button">Click to add first parents</button>
+
 <button type="button"
 ng-click="$ctrl.makePerson()"
 class="button button-raised"
-name="button">Click to add person</button>
+name="button">Click to add person</button> -->
 
 <div ng-repeat="person in $ctrl.people">
   <p>
-    {{ person.name.first }} {{ person.name.last }} was born {{ person.birthdate }} in {{ person.birthplace }}
+    {{ person.name.first }} {{ person.name.last }} was born {{ person.events.birth.date }} in {{ person.events.birth.place }}
   </p>
-  <p>
+  <p ng-if="person.relationships.mother && person.relationships.father">
     Their parents are {{ person.relationships.mother.name.first + ' ' + person.relationships.mother.name.last }} and {{ person.relationships.father.name.first + ' ' + person.relationships.father.name.last }}.
   </p>
   <p>
-    Their children are <span ng-repeat="child in person.relationships.children">{{ child.name.first + ' ' + child.name.last + ', '}}</span> 
+    They are married to {{ person.relationships.spouse.name.first + ' ' + person.relationships.spouse.name.last }}.
+  </p>
+  <p>
+    Their children are <span ng-repeat="child in person.relationships.children">{{ child.name.first + ' ' + child.name.last + ', '}}</span>
   </p>
 </div>

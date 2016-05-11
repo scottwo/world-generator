@@ -1,4 +1,5 @@
 import 'app/services/models/Person.model';
+const UUID = require('uuid-js');
 
 class PersonService {
   /*@ngInject*/
@@ -12,8 +13,8 @@ class PersonService {
   //Params:
   //  parents: Array of person ids
   //
-  create(parents=[], birthdate, birthplace) {
-    let childParents = [];
+  create(parents={}, birthdate, birthplace) {
+    let childParents = {};
     let newPerson = {};
     let gender = 'female';
     if(Math.random() * 10 > 5) {
@@ -28,19 +29,26 @@ class PersonService {
     // parents.forEach(id => {
     //   childParents.push(this.Person.get(id));
     // });
-    if(!parents.length) {
+    if(!parents.mother && !parents.father) {
       childParents = this.randomParents({}, 2);
-      console.log(childParents);
+    } else {
+      childParents = parents;
     }
     newPerson = {
       name: this.name.generateRandom(childParents, birthdate, birthplace, gender),
+      age: 0,
+      status: 'alive',
       gender: gender,
-      birthdate: birthdate,
-      birthplace: birthplace,
       relationships: {
         mother: childParents.mother,
         father: childParents.father,
         children: []
+      },
+      events: {
+        birth: {
+          date: birthdate,
+          place: birthplace,
+        }
       },
       // personality: this.generatePersonality(childParents, birthdate, birthplace),
       // characteristics: this.generateCharacteristics(childParents, birthdate, birthplace),
@@ -86,6 +94,52 @@ class PersonService {
       }
       return obj;
     }
+  }
+
+  startWithTwoParents() {
+    let birthplace = this.location.random('town');
+    let birthdate = 0;
+    let parents = {
+      mother: {
+        id: UUID.create(),
+        name: this.name.generateRandom([{name:{last:'Smith'}}], birthdate, birthplace, 'female'),
+        gender: 'female',
+        relationships: {
+          mother: null,
+          father: null,
+          children: []
+        },
+        personality: {},
+        characteristics: {},
+        events: {
+          birth: {
+            date: birthdate,
+            place: birthplace
+          }
+        }
+      },
+      father: {
+        id: UUID.create(),
+        name: this.name.generateRandom([{name:{last:'Smith'}}], birthdate, birthplace, 'male'),
+        gender: 'male',
+        relationships: {
+          mother: null,
+          father: null,
+          children: []
+        },
+        personality: {},
+        characteristics: {},
+        events: {
+          birth: {
+            date: birthdate,
+            place: birthplace
+          }
+        }
+      }
+    };
+    parents.mother.relationships.spouse = parents.father;
+    parents.father.relationships.spouse = parents.mother;
+    this.people.push(parents.mother, parents.father);
   }
 
 }
