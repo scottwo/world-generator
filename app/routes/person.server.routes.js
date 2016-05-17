@@ -2,13 +2,14 @@
 'use strict';
 
 // Load the 'users' controller
+var person = require('../../app/controllers/person.server.controller');
 var Person = require('../../app/models/person.server.model').Person;
 
 // Define the routes module' method
 module.exports = function(app) {
 	// Set up the 'users' base routes
 	app.route('/person')
-	  //  .post(users.create)
+	   .post(person.create)
 	   .get((req, res, next) => {
        return Person.findAll(req.query).then(persons => {
          return res.status(200).send(persons).end();
